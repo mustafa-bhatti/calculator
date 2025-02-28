@@ -20,8 +20,9 @@ numberBtn.forEach((number) => {
         if (afterEval || zeroCheck) {
             clear();
         }
-
+        if (currentText.innerText.length<15){
         currentText.innerText += e.target.innerText;
+        }
     })
 })
 
