@@ -4,6 +4,8 @@ const resultText = document.querySelector(".result");
 const currentText = document.querySelector(".current");
 const operator = document.querySelectorAll(".opr");
 const eq = document.querySelector(".eq");
+const delBtn = document.querySelector(".delete");
+
 let number1 = 0;
 let number2 = 0;
 let beforeOperator = true;
@@ -93,8 +95,6 @@ function evaluate(numA,numB,operator) {
     beforeOperator = true;
     afterEval = true;
     currentText.innerText = result;
-
-
 }
 
 eq.addEventListener("click",(e) => {
@@ -105,4 +105,10 @@ eq.addEventListener("click",(e) => {
         evaluate(+number1,+number2,currentOp);
     }
 
+})
+
+delBtn.addEventListener("click",(e) => {
+    if (currentText.innerText.length > 0) {
+        currentText.innerText = currentText.innerText.substring(0,currentText.innerText.length-1)
+    }
 })
