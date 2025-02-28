@@ -1,8 +1,8 @@
-const numberBtn = document.querySelectorAll(".btn");
+const numberBtn = document.querySelectorAll(".num");
 const display = document.querySelector(".display");
 const currentText = document.querySelector(".current");
-console.log(display.innerText);
 console.log(numberBtn);
+
 numberBtn.forEach((number) => {
     number.addEventListener("click",(e) => {
         console.log(e.target.innerText);
