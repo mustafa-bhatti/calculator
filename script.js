@@ -152,3 +152,26 @@ operatorBtn.forEach((operatorB) => {
 eq.addEventListener("click", evalOperation);
 delBtn.addEventListener("click", deleteLast);
 dotBtn.addEventListener("click", addDot);
+
+//keyboard support
+document.addEventListener('keyup',(e) => {
+    console.log(e.key);
+    if (Number.isInteger(+e.key)) {
+        addNumber(e.key);
+    }
+    else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
+        addOperator(e.key);
+    }
+    else if(e.key =="Enter"){
+        evalOperation();
+    }
+    else if(e.key == ".") {
+        addDot();
+    }
+    else if(e.key == "Backspace"){
+        deleteLast();
+    }
+
+
+
+});
