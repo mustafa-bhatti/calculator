@@ -13,18 +13,24 @@ let currentOp = "";
 let afterEval = false; //turn it off after every evaluration
 let result = 0;
 let tempNum = 0;
+let zeroCheck = false;
 
 numberBtn.forEach((number) => {
     number.addEventListener("click",(e) => {
-        if (afterEval) {
+        if (afterEval || zeroCheck) {
             clear();
         }
+
         currentText.innerText += e.target.innerText;
     })
 })
 
 operator.forEach((operator) => {
     operator.addEventListener("click",(e) => {
+        if (zeroCheck) {
+            clear();
+            return;
+        }
         if (beforeOperator && currentText.innerText.length > 0) {
             number1 = currentText.innerText;
             resultText.innerText = currentText.innerText + " " +  e.target.innerText + " ";
@@ -65,10 +71,12 @@ function clear() {
     number2 = 0;
     beforeOperator = true;
     currentOp = "";
+    afterEval = false;
+    result = 0;
+    tempNum = 0;
+    zeroCheck = false;
     currentText.innerText = "";
     resultText.innerText = "";
-    afterEval = false;
-    tempNum = 0;
 
 }
 function evaluate(numA,numB,operator) {
@@ -85,6 +93,7 @@ function evaluate(numA,numB,operator) {
                 result = numA / numB;
             }
             else {
+                zeroCheck = true;
                 result = "ZeroDivisionError"
             }
             break;
