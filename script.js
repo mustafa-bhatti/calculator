@@ -154,6 +154,7 @@ delBtn.addEventListener("click", deleteLast);
 dotBtn.addEventListener("click", addDot);
 
 //keyboard support
+    
 document.addEventListener('keyup',(e) => {
     console.log(e.key);
     if (Number.isInteger(+e.key)) {
@@ -171,7 +172,4 @@ document.addEventListener('keyup',(e) => {
     else if(e.key == "Backspace"){
         deleteLast();
     }
-
-
-
 });
