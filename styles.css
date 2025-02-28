@@ -17,7 +17,9 @@ body {
     width: 250px;
     
 }
-
+.divider {
+    width: 100%;
+}
 .btn {
     flex: 1 ;
     font-size: 18px;
