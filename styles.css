@@ -14,10 +14,13 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    width: 200px;
+    width: 250px;
+    
 }
 
 .btn {
+    flex: 1 ;
+    font-size: 18px;
     padding: 20px;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
