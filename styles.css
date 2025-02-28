@@ -63,3 +63,6 @@ body {
 .eq {
     background-color: red;
 }
+.dot {
+    font-weight: 700;
+}
