@@ -20,6 +20,13 @@ body {
 .divider {
     width: 100%;
 }
+.btn.delete{
+    padding: 0px;
+}
+.btn.divide {
+    flex-grow: 0.1;
+    
+}
 .btn {
     flex: 1 ;
     font-size: 18px;
