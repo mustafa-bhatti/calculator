@@ -7,9 +7,8 @@ const eq = document.querySelector(".eq");
 let number1 = 0;
 let number2 = 0;
 let beforeOperator = true;
-let afterOperator = false;
 let currentOp = "";
-let afterEval = false;
+let afterEval = false; //turn it off after every evaluration
 let result = 0;
 let tempNum = 0;
 
@@ -24,7 +23,6 @@ numberBtn.forEach((number) => {
 
 operator.forEach((operator) => {
     operator.addEventListener("click",(e) => {
-
         if (beforeOperator && currentText.innerText.length > 0) {
             number1 = currentText.innerText;
             resultText.innerText = currentText.innerText + " " +  e.target.innerText + " ";
@@ -32,6 +30,7 @@ operator.forEach((operator) => {
             currentText.innerText = "";
             beforeOperator = false;
             currentOp = e.target.innerText;
+            afterEval = false;
             // operator = e.target.innerText;
             // console.log(operator);
         }
@@ -49,7 +48,6 @@ operator.forEach((operator) => {
                         afterEval = false;} 
             }
             else {
-                
                 resultText.innerText = tempNum + " " +  e.target.innerText + " ";
                 currentOp = e.target.innerText;
 
@@ -64,7 +62,6 @@ function clear() {
     number1 = 0;
     number2 = 0;
     beforeOperator = true;
-    afterOperator = false;
     currentOp = "";
     currentText.innerText = "";
     resultText.innerText = "";
@@ -93,8 +90,10 @@ function evaluate(numA,numB,operator) {
             result = numA * numB;
             break;
        }
+    beforeOperator = true;
     afterEval = true;
     currentText.innerText = result;
+
 
 }
 
@@ -104,10 +103,6 @@ eq.addEventListener("click",(e) => {
         resultText.innerText +=" "+currentText.innerText;
         number2 = currentText.innerText;
         evaluate(+number1,+number2,currentOp);
-        
-
-
-
     }
 
 })
