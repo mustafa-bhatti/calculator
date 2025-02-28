@@ -4,17 +4,18 @@ const resultText = document.querySelector(".result");
 const currentText = document.querySelector(".current");
 const operator = document.querySelectorAll(".opr");
 const eq = document.querySelector(".eq");
-console.log(numberBtn);
 let number1 = 0;
 let number2 = 0;
 let beforeOperator = true;
 let afterOperator = false;
 let currentOp = "";
 let afterEval = false;
+let result = 0;
+let tempNum = 0;
+
 numberBtn.forEach((number) => {
     number.addEventListener("click",(e) => {
         if (afterEval) {
-            console.log("aftereval");
             clear();
         }
         currentText.innerText += e.target.innerText;
@@ -24,19 +25,35 @@ numberBtn.forEach((number) => {
 operator.forEach((operator) => {
     operator.addEventListener("click",(e) => {
 
-        if (beforeOperator && !afterEval) {
+        if (beforeOperator && currentText.innerText.length > 0) {
             number1 = currentText.innerText;
             resultText.innerText = currentText.innerText + " " +  e.target.innerText + " ";
+            tempNum = number1;
             currentText.innerText = "";
             beforeOperator = false;
             currentOp = e.target.innerText;
             // operator = e.target.innerText;
             // console.log(operator);
         }
-        else {
-                afterOperator = true;
-                number2 = currentText.innerText;
-                resultText.innerText +=" "+currentText.innerText;
+        else {  
+                if (currentOp == e.target.innerText){
+                    if (!afterEval) {
+                        number2 = currentText.innerText;
+                        resultText.innerText +=" "+currentText.innerText;
+                        evaluate(+number1,+number2,currentOp)
+                        afterEval = true;
+                } else {
+                        number1 = result;
+                        resultText.innerText = number1 + " " + currentOp + " ";
+                        currentText.innerText= "";
+                        afterEval = false;} 
+            }
+            else {
+                
+                resultText.innerText = tempNum + " " +  e.target.innerText + " ";
+                currentOp = e.target.innerText;
+
+            }
         }
        if (e.target.innerText == "CE") {
             clear();
@@ -52,10 +69,10 @@ function clear() {
     currentText.innerText = "";
     resultText.innerText = "";
     afterEval = false;
+    tempNum = 0;
 
 }
 function evaluate(numA,numB,operator) {
-    let result = 0;
     console.log("Evaluate - ",numA,numB,operator);
     switch (operator) {
         case "+":
@@ -78,6 +95,7 @@ function evaluate(numA,numB,operator) {
        }
     afterEval = true;
     currentText.innerText = result;
+
 }
 
 eq.addEventListener("click",(e) => {
